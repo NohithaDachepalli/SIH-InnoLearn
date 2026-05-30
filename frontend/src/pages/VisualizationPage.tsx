@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../pages/Navbar';
 import LinkedListVisualization from '../components/LinkedListVisualization';
 import BinaryTreeVisualization from '../components/BinaryTreeVisualization';
 import ArrayVisualization from '../components/ArrayVisualization';
@@ -7,6 +9,8 @@ import QueueVisualization from '../components/QueueVisualization';
 import CodePanel from '../components/CodePanel';
 import ExplanationPanel from '../components/ExplanationPanel';
 import InstructionBox from '../components/InstructionBox';
+
+type PageType = 'home' | 'visualization' | 'practice';
 
 export type DataStructure = 'linkedlist' | 'array' | 'stack' | 'queue' | 'binarytree';
 export type Operation =
@@ -22,6 +26,8 @@ export type Operation =
   | 'postorder';
 
 const VisualizationPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState<PageType>('visualization');
   const [selectedStructure, setSelectedStructure] = useState<DataStructure>('linkedlist');
   const [currentOperation, setCurrentOperation] = useState<{ operation: Operation; data: any } | null>(null);
 
@@ -37,13 +43,22 @@ const VisualizationPage: React.FC = () => {
     setCurrentOperation({ operation, data });
   };
 
+  const handleNavigate = (page: PageType) => {
+    setCurrentPage(page);
+    if (page === 'home') navigate('/');
+    if (page === 'visualization') navigate('/visualization');
+    if (page === 'practice') navigate('/practice');
+  };
+
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-slate-900 mb-4">Interactive Data Structure Visualization</h1>
-        <p className="text-lg text-slate-600">Explore data structures through interactive visualizations and real-time code generation</p>
-      </div>
+    <div className="min-h-screen bg-slate-50">
+      <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
+      <div className="container mx-auto px-4 py-8 space-y-6">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-slate-900 mb-4">Interactive Data Structure Visualization</h1>
+          <p className="text-lg text-slate-600">Explore data structures through interactive visualizations and real-time code generation</p>
+        </div>
 
       {/* Structure Selector */}
       <div className="flex justify-center space-x-2 mb-8">
@@ -103,6 +118,7 @@ const VisualizationPage: React.FC = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

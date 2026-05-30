@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import Navbar from '../../pages/Navbar';
 import { Button } from '../components/ui/button';
 import { CodeEditor } from '../components/CodeEditor';
 import { GameStats } from '../components/GameStats';
@@ -14,6 +16,8 @@ import { DataStructureType, VisualizationData } from '../types/DataStructures';
 import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { PlayCircle, RotateCcw } from 'lucide-react';
 import { toast } from '../components/ui/use-toast';
+
+type PageType = 'home' | 'visualization' | 'practice';
 
 function getCodeTemplate(type: DataStructureType): string {
   const templates = {
@@ -144,6 +148,8 @@ function getElementCount(data: VisualizationData): number {
 }
 
 const PracticeMode = () => {
+  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState<PageType>('practice');
   const [currentType, setCurrentType] = useState<DataStructureType>('linkedlist');
   const [code, setCode] = useState(getCodeTemplate('linkedlist'));
   const [visualizationData, setVisualizationData] = useState<VisualizationData>({ type: 'linkedlist' });
@@ -193,6 +199,13 @@ const PracticeMode = () => {
   const resetCode = () => {
     setCode(getCodeTemplate(currentType));
     setVisualizationData({ type: currentType });
+  };
+
+  const handleNavigate = (page: PageType) => {
+    setCurrentPage(page);
+    if (page === 'home') navigate('/');
+    if (page === 'visualization') navigate('/visualization');
+    if (page === 'practice') navigate('/practice');
   };
 
   const handleElementRemove = (elementId: string) => {
@@ -278,10 +291,11 @@ const PracticeMode = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-    <div className="min-h-screen bg-background">      
-      <div className="container mx-auto px-4 py-6">
-        <div className="mb-6">
-          <Tabs value={currentType} onValueChange={(value: string) => handleTypeChange(value as DataStructureType)}>
+      <div className="min-h-screen bg-background">
+        <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
+        <div className="container mx-auto px-4 py-6">
+          <div className="mb-6">
+            <Tabs value={currentType} onValueChange={(value: string) => handleTypeChange(value as DataStructureType)}>
             <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="linkedlist">Linked List</TabsTrigger>
               <TabsTrigger value="array">Array</TabsTrigger>

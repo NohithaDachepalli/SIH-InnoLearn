@@ -11,7 +11,6 @@ Master Data Structures & Algorithms with Interactive Visualization and Practice
 - [Running the Application](#running-the-application)
 - [API Endpoints](#api-endpoints)
 - [Pages Overview](#pages-overview)
-- [Troubleshooting](#troubleshooting)
 
 ## Features
 

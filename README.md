@@ -2,7 +2,7 @@
 
 Master Data Structures & Algorithms with Interactive Visualization and Practice
 
-## 📋 Table of Contents
+##  Table of Contents
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
@@ -13,7 +13,7 @@ Master Data Structures & Algorithms with Interactive Visualization and Practice
 - [Pages Overview](#pages-overview)
 - [Troubleshooting](#troubleshooting)
 
-## ✨ Features
+## Features
 
 - **Interactive Visualizations**: See how data structures work in real-time
   - Arrays
@@ -31,7 +31,7 @@ Master Data Structures & Algorithms with Interactive Visualization and Practice
 
 - **Game Stats**: Track your learning progress and statistics
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React 18** - UI library
@@ -50,7 +50,7 @@ Master Data Structures & Algorithms with Interactive Visualization and Practice
 - **JWT** - Authentication tokens
 - **File-based Storage** - User data persistence
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 SIH-InnoLearn-main/
@@ -77,7 +77,7 @@ SIH-InnoLearn-main/
     └── package.json         # Dependencies
 ```
 
-## 📦 Prerequisites
+## Prerequisites
 
 Before running the application, ensure you have:
 - **Node.js** (v16 or higher) - [Download here](https://nodejs.org/)
@@ -89,7 +89,7 @@ node --version
 npm --version
 ```
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone or Extract the Project
 ```bash
@@ -108,7 +108,7 @@ cd ../backend
 npm install
 ```
 
-## ▶️ Running the Application
+## Running the Application
 
 ### Option 1: Run Both Services Sequentially (Simple)
 
@@ -117,7 +117,7 @@ npm install
 cd backend
 node server/authServer.js
 ```
-You should see: `🚀 Auth server running on port 5000`
+You should see: ` Auth server running on port 5000`
 
 **Terminal 2 - Start Frontend:**
 ```bash
@@ -145,7 +145,7 @@ npm run dev
 ### Access the Application
 Open your browser and navigate to: **http://localhost:5173**
 
-## 🔌 API Endpoints
+## API Endpoints
 
 The backend runs on `http://localhost:5000` and provides the following endpoints:
 
@@ -186,7 +186,7 @@ GET /health
 Response: { "status": "Backend running successfully!" }
 ```
 
-## 📄 Pages Overview
+## Pages Overview
 
 ### 1. **Login Page** (`/login`)
 - Email and password authentication
@@ -217,100 +217,4 @@ Response: { "status": "Backend running successfully!" }
 - Real-time feedback
 - Performance statistics
 
-## 🐛 Troubleshooting
 
-### Issue: "Network error" on Login/Signup
-**Solution:**
-1. Ensure backend is running on port 5000
-2. Check firewall isn't blocking port 5000
-3. Verify `.env` file exists in `backend/` folder
-
-### Issue: Frontend won't start
-**Solution:**
-```bash
-cd frontend
-npm install  # Reinstall packages
-npm run dev
-```
-
-### Issue: Port 5000 already in use
-**Solution:**
-Edit `backend/.env` and change:
-```
-PORT=5001
-```
-Then update frontend fetch URLs from `localhost:5000` to `localhost:5001`
-
-### Issue: "Cannot find modules" error
-**Solution:**
-```bash
-# In backend/ or frontend/ directory where error occurred
-rm -rf node_modules
-npm install
-```
-
-### Issue: MongoDB connection error (ignore)
-The application now uses file-based storage. MongoDB errors can be safely ignored.
-
-## 🔐 User Authentication
-
-Users are stored in `backend/server/users.json` with encrypted passwords.
-
-Example entry:
-```json
-{
-  "id": "1234567890",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "$2a$10$encrypted_hash..."
-}
-```
-
-## 📝 Available NPM Scripts
-
-### Frontend
-```bash
-npm run dev      # Start development server
-npm run build    # Build for production
-npm run preview  # Preview production build
-npm run lint     # Run ESLint
-```
-
-### Backend
-```bash
-node server/authServer.js    # Start the server
-```
-
-## 🎯 Next Steps
-
-1. **Signup** with test credentials
-2. **Login** to access the dashboard
-3. Explore **Visualization Page** to see data structures in action
-4. Try **Practice Mode** to solve coding challenges
-5. Check **Performance Stats** to track progress
-
-## 📧 Support
-
-If you encounter any issues:
-1. Check the [Troubleshooting](#troubleshooting) section
-2. Verify all dependencies are installed: `npm install`
-3. Ensure both backend and frontend are running
-4. Check browser console for detailed error messages (F12)
-
-## 🚦 Quick Start (TL;DR)
-
-```bash
-# Terminal 1 - Backend
-cd backend
-node server/authServer.js
-
-# Terminal 2 - Frontend
-cd frontend
-npm run dev
-
-# Open browser to http://localhost:5173
-```
-
----
-
-**Happy Learning! 🎓**
